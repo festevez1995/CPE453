@@ -1,0 +1,12 @@
+Fernando Estevez
+
+How is this LWP lib different from a real thread managment lib?
+This LWP lib differes from a real thread managment lib because 
+this implemented lib doesn't have synchronization tools
+and also our LWP lib doesn't have any managment that can 
+prevent deadlocking.
+ 
+Name two ways in which this LWP lib API could be improved?
+1. Add synchronization tools
+2. Better schedualing algorithm to limit the amount of deadlocks
+
