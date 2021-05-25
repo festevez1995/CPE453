@@ -19,6 +19,7 @@ def main():
     tlb = TLB()
     # start tranlating logical to Physical Addresses
     translate(ref_seq, pageTable, memory, tlb)
+    ref_seq.close()
     return 0
 
 def checkArgs():
@@ -36,10 +37,15 @@ def checkArgs():
     elif argc == 3:
         # Open up reference file
         ref_seq = open(sys.argv[1], 'r')
-        # get the number of frames desiered
-        frame = int(sys.argv[2])
-        # default page replacement alg
-        pra = "FIFO"
+        if (sys.argv[2].upper() == "FIFO" or sys.argv[2].upper() == "LRU"
+        or sys.argv[2].upper() == "OPT"):
+            # default page replacement alg
+            pra = sys.argv[2].upper()
+            frame = 256
+        else:
+            # get the number of frames desiered
+            frame = int(sys.argv[2])
+            pra = "FIFO"
     # Passed reference file, frame number, and page replacement alg
     elif argc == 4:
         # open file
@@ -47,12 +53,16 @@ def checkArgs():
         # get and convert frame number
         frame = int(sys.argv[2])
         # get page replacement alg
-        pra = sys.argv[3]
+        pra = sys.argv[3].upper()
     # if else, there was an improper cmd line args
     else:
         # Print usage error
         print("usage: memSim <reference-sequence-file.txt> <FRAMES> <PRA>")
         # return all -1 because of error
+        return -1, -1, -1
+
+    if frame > 256 or frame < 0:
+        print("Usage: Frame <= 256 and > 0")
         return -1, -1, -1
     # Return all args
     return ref_seq, frame, pra

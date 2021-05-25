@@ -110,6 +110,7 @@ class PageTable:
             tlb.freeTLBFrame()
 
         tlb.addToTLB(pageNum, freeFrame)
+        backingStore.close()
 
     def getFrameFromTable(self, pageNum):
         return self.pageTable[pageNum]
