@@ -1,0 +1,10 @@
+Fernando Estevez
+
+Special Instructions:
+I created an executable called memSim. You could run this as if 
+it was a C program.
+ex: ./memsim addresses.txt 5 LRU
+
+Other:
+I completed FIFO and LRU. I was not able to get OPT working.
+I did an implementation but it doesn't work. 
